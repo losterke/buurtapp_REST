@@ -12,18 +12,10 @@ public class Melding {
     
     private int id;
     private String type;
-    private Double latitude;
-    private Double longitude;
+    private Locatie locatie;
     private String beschrijving;
+    private User auteur;
     
-    public Melding(int id,String type,Double la, Double lo, String beschrijving){
-        setId(id);
-        setType(type);
-        setLatitude(la);
-        setLongitude(lo);
-        setBeschrijving(beschrijving);
-    }
-
     public int getId() {
         return id;
     }
@@ -48,21 +40,14 @@ public class Melding {
         }
     }
 
-    public Double getLatitude() {
-        return latitude;
+    public Locatie getLocatie() {
+        return locatie;
     }
 
-    public void setLatitude(Double latitude) {
-        this.latitude = latitude;
+    public void setLocatie(Locatie locatie) {
+        this.locatie = locatie;
     }
 
-    public Double getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(Double longitude) {
-        this.longitude = longitude;
-    }
 
     public String getBeschrijving() {
         return beschrijving;
@@ -75,5 +60,35 @@ public class Melding {
             throw new IllegalArgumentException("De beschrijving van u melding mag niet leeg zijn.");
         }
     }
+
+    public User getAuteur() {
+        return auteur;
+    }
+
+    public void setAuteur(User auteur) {
+        this.auteur = auteur;
+    }
     
+    
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Melding other = (Melding) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        return true;
+    } 
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 37 * hash + this.id;
+        return hash;
+    }
 }

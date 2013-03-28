@@ -13,18 +13,11 @@ public class User {
     private int id;
     private String naam;
     private String voornaam;
+    private String email;
     private String adres;
     private byte[] foto;
     private int punten;
 
-    public User(int i, String n, String vn, String a, byte[] f, int ptn) {
-        setId(i);
-        setNaam(n);
-        setVoornaam(vn);
-        setAdres(a);
-        setFoto(f);
-        setPunten(ptn);
-    }
 
     public int getId() {
         return id;
@@ -48,6 +41,14 @@ public class User {
 
     public void setVoornaam(String voornaam) {
         this.voornaam = voornaam;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getAdres() {
@@ -74,4 +75,25 @@ public class User {
         this.punten = punten;
     }
         
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final User other = (User) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        return true;
+    } 
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 67 * hash + this.id;
+        return hash;
+    }
 }
